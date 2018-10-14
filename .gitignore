@@ -1,0 +1,10 @@
+# ignore the files and folders Intellij makes when running or compiling or whatever it does to produce .class Java files
+assignments/assignment-1/DiceGame/out/
+assignments/assignment-1/DiceGame/.idea/
+assignments/assignment-1/Shares/out/
+assignments/assignment-1/Shares/.idea/
+
+# ignoring these folders & files wherever they are
+**/.vscode
+**/*.iml
+
