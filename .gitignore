@@ -11,4 +11,5 @@ assignments/assignment-1/Shares/.idea/
 # ignoring folders Intellij and vscode makes
 .vscode/
 .idea/
+*.bluej
 
