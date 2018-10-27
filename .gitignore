@@ -8,3 +8,7 @@ assignments/assignment-1/Shares/.idea/
 **/.vscode
 **/*.iml
 
+# ignoring folders Intellij and vscode makes
+.vscode/
+.idea/
+

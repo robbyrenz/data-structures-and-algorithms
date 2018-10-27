@@ -8,12 +8,12 @@ public class Peg {
     
     // fields
     private String color;
-    private boolean empty;
+    private boolean match;
 
     // constructor
-    public Peg(String color, boolean empty) {
+    public Peg(String color) {
         this.color = color;
-        this.empty = empty;
+        this.match = false;
     }
 
     // getters
@@ -21,9 +21,14 @@ public class Peg {
         return color;
     }
     public boolean isEmpty() {
-        return empty;
+        return match;
     }
 
     // setters
     
+
+    // other methods
+    public String toString() {
+        return this.color;
+    }
 }

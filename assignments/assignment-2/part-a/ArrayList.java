@@ -56,6 +56,17 @@ public class ArrayList<E> implements List<E> {
         size++;
     }
 
+    // appends an element at the end of the list (my definition)
+    public void addToLast(E e) {
+        if (size == data.length) 
+            throw new IllegalStateException("Array is full");
+        int i = 0;
+        while (data[i] != null)
+            i++;
+        data[i] = e;
+        size++;
+    }
+
     // removes/returns the element at index i, shifting subsequent elements earlier
     public E remove(int i) throws IndexOutOfBoundsException {
         checkIndex(i, size);
