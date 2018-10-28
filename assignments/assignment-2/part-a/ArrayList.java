@@ -86,7 +86,15 @@ public class ArrayList<E> implements List<E> {
     }
 
     // other method
+    // public boolean equals(ArrayList<E> list) {
+    //     if (list == this)
+    //         return true;
+    //     return false;
+    // }
+
     public boolean equals(ArrayList<E> list) {
-        return 0; // TODO: write in the right code
+        if (list == this)
+            return true;
+        return false;
     }
 }

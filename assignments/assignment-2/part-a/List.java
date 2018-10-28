@@ -5,7 +5,7 @@
 /**
  * A simplified version of the java.util.List interface.
  */
-public interface List<E> extends Iterable<E>{
+public interface List<E> /*extends Iterable<E>*/{
   /**
    * Returns the number of elements in the list.
    * @return number of elements in the list

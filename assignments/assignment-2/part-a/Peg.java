@@ -31,4 +31,12 @@ public class Peg {
     public String toString() {
         return this.color;
     }
+
+    public boolean equals(ArrayList<String> list) {
+        for (int i = 0; i < list.size(); i++) {
+            if (list.get(i) != this.getColor())
+                return false;
+        }
+        return true;
+    }
 }
