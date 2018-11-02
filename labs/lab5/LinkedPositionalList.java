@@ -1,8 +1,81 @@
 /*
  * From Data Structures and Algorithms in Java, Sixth Edition, Goodrich et al.
+ * Taken from Microsoft Teams
+ * @author Robby Renz
+ * Student Number: 3073208
+ * Answer 1 of Lab 5
 */
 
+import java.util.Iterator;
+
 public class LinkedPositionalList<E> implements PositionalList<E> {
+
+  //--------------------nested PositionIterator class--------------------
+  private class PositionIterator implements Iterator<Position<E>> {
+    private Position<E> cursor = first(); // position of the next element to report
+    private Position<E> recent = null; // position of the last reported element
+
+    // tests whether the iterator has a next object
+    public boolean hasNext() {
+      return (cursor != null);
+    }
+
+    // returns the next position in the iterator
+    public Position<E> next() throws NoSuchElementException {
+      if (cursor == null)
+        throw new NoSuchElementException("nothing left");
+
+      recent = cursor; // element at this position might be later removed
+      cursor = after(cursor);
+      return recent;
+    }
+
+    // removes the element returned by most recent call to next
+    public void remove() throws IllegalStateException {
+      if (recent == null)
+        throw new IllegalStateException("nothing to remove");
+
+      LinkedPositionalList.this.remove(recent); // remove from outer list
+      recent = null; // do not remove again until next is called
+    }
+  } //--------------------end of nested PositionIterator class--------------------
+
+  //--------------------nested PositionIterable class--------------------
+  private class PositionIterable implements Iterable<Position<E>> {
+    public Iterator<Position<E>> iterator() {
+      return new PositionIterator();
+    }
+  } //--------------------end of PositionIterable class--------------------
+
+  //returns an iterable representation of the list's positions
+  public Iterable<Position<E>> positions() {
+    return new PositionIterable(); // create a new instance of the inner class
+  }
+
+  //--------------------nested ElementIterator class--------------------
+  // this class adapts the iteration produced by positions() to return elements
+  private class ElementIterator implements Iterator<E> {
+    Iterator<Position<E>> posIterator = new PositionIterator();
+
+    public boolean hasNext() {
+      return posIterator.hasNext();
+    }
+
+    public E next() {
+      return posIterator.next().getElement(); //return element!
+    }
+
+    public void remove() {
+      posIterator.remove();
+    }
+  } //--------------------end of nested ElementIterator class--------------------
+
+  // returns an iterator of the elements stored in the list
+  public Iterator<E> iterator() {
+    return new ElementIterator();
+  }
+  //-----------------------------------------------------------------------------
+
 
   private static class Node<E> implements Position<E> {
     private E element;               
@@ -65,9 +138,13 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
     return node;
   }
 
-  public int size() { return size; }
+  public int size() {
+    return size;
+  }
 
-  public boolean isEmpty() { return size == 0; }
+  public boolean isEmpty() {
+    return size == 0;
+  }
 
   public Position<E> first() {
     return position(header.getNext());
@@ -103,14 +180,12 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
     return addBetween(e, trailer.getPrev(), trailer);     
   }
 
-  public Position<E> addBefore(Position<E> p, E e)
-                                throws IllegalArgumentException {
+  public Position<E> addBefore(Position<E> p, E e) throws IllegalArgumentException {
     Node<E> node = validate(p);
     return addBetween(e, node.getPrev(), node);
   }
 
-  public Position<E> addAfter(Position<E> p, E e)
-                                throws IllegalArgumentException {
+  public Position<E> addAfter(Position<E> p, E e) throws IllegalArgumentException {
     Node<E> node = validate(p);
     return addBetween(e, node, node.getNext());
   }
