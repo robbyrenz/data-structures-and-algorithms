@@ -24,7 +24,6 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
     public Position<E> next() throws NoSuchElementException {
       if (cursor == null)
         throw new NoSuchElementException("nothing left");
-
       recent = cursor; // element at this position might be later removed
       cursor = after(cursor);
       return recent;
@@ -34,7 +33,6 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
     public void remove() throws IllegalStateException {
       if (recent == null)
         throw new IllegalStateException("nothing to remove");
-
       LinkedPositionalList.this.remove(recent); // remove from outer list
       recent = null; // do not remove again until next is called
     }
