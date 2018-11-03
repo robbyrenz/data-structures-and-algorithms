@@ -74,8 +74,7 @@ public interface PositionalList<E> {
    * @return the Position representing the location of the new element
    * @throws IllegalArgumentException if p is not a valid position for this list
    */
-  Position<E> addBefore(Position<E> p, E e)
-    throws IllegalArgumentException;
+  Position<E> addBefore(Position<E> p, E e) throws IllegalArgumentException;
 
   /**
    * Inserts an element immediately after the given Position.
@@ -85,8 +84,7 @@ public interface PositionalList<E> {
    * @return the Position representing the location of the new element
    * @throws IllegalArgumentException if p is not a valid position for this list
    */
-  Position<E> addAfter(Position<E> p, E e)
-    throws IllegalArgumentException;
+  Position<E> addAfter(Position<E> p, E e) throws IllegalArgumentException;
 
   /**
    * Replaces the element stored at the given Position and returns the replaced element.
