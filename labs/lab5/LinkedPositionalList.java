@@ -21,9 +21,9 @@ public class LinkedPositionalList<E> implements PositionalList<E> {
     }
 
     // returns the next position in the iterator
-    public Position<E> next() throws NoSuchElementException {
-      if (cursor == null)
-        throw new NoSuchElementException("nothing left");
+    public Position<E> next() /*throws NoSuchElementException*/ {
+      // if (cursor == null)
+      //   throw new NoSuchElementException("nothing left");
       recent = cursor; // element at this position might be later removed
       cursor = after(cursor);
       return recent;

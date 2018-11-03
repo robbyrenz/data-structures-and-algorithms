@@ -14,20 +14,37 @@ public class Lab5_Driver {
             list.addLast(i);
         System.out.println("Original list: ");
         System.out.println(list);
-        
-        Iterator<Position<Integer>> piter = list.positions().iterator();
 
-        while (piter.hasNext()) {
-            Position p = piter.next();
-            if (p.getElement().equals(1) || p.getElement().equals(2));
-                list.set(p, 0);
+        Iterator<Integer> iter = list.iterator();
+        while (iter.hasNext()) {
+            if (iter.next() < 3)
+                iter.remove();
         }
-        System.out.println("List with the elements 1 & 2 removed:" + list);
+        System.out.println("List with the elements 1 & 2 removed:\n" + list);
 
-        System.out.println("List with the every 4 replaced with 3:" + list);
+        Iterator<Position<Integer>> piter = list.positions().iterator();
+        for (Integer i: list) {
+            Position p = piter.next();
+            if (p.getElement().equals(4))
+                list.set(p, 3);
+        }
+        System.out.println("List with the every 4 replaced with 3:\n" + list);
 
-        System.out.println("List with all the consecutive duplicated removed:" + list);
+        Iterator<Integer> iterTwo = list.iterator();
+        while (iterTwo.hasNext()) {
+            int number = iterTwo.next();
+            int secondNumber = iterTwo.next();
+            if (number == secondNumber)
+                iterTwo.remove();
+        }
+        System.out.println("List with all the consecutive duplicated removed:\n" + list);
 
-        System.out.println("The sum of the integers in the list:" + list);
+        int sum = 0;
+        Iterator<Position<Integer>> piterTwo = list.positions().iterator();
+        for (Integer i: list) {
+            Position p = piterTwo.next();
+            sum += (int) p.getElement();
+        }
+        System.out.println("The sum of the integers in the list:\n" + sum);
     }
 }
