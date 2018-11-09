@@ -83,8 +83,12 @@ public class Team {
 	}
 	
 	// other methods
+	public String displayFullScore() {
+		return city + " " + name + "\t\t\t" + wins + "\t" + losses + "\t" + otl + "\t" + row + "\t" + + this.gamesPlayed() + "\t" + this.points();
+	}
+
 	public String toString() {
-		return city + " " + name + "\t\t\t" + wins + "\t" + losses + "\t" + otl + "\t" + row + "\n";
+		return city + " " + name;
 	}
 
 	public int gamesPlayed() {

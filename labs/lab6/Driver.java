@@ -5,6 +5,7 @@
  */
 
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class Driver {
 	public static void main(String[] args) {
@@ -25,8 +26,21 @@ public class Driver {
 		list.add(min);
 		list.add(blue);
 
-		for (Team t: list)
-			System.out.println(t);
+		TeamComparator comp = new TeamComparator();
+
+		System.out.println("Best Team: ");
+		Team uno = list.get(0);
+		for (int i = 1; i < list.size(); i++) {
+			int foo = comp.compare(uno, list.get(i));
+			if (foo < 0)
+				uno = list.get(i);
+		}
+		System.out.println(uno);
+		System.out.println();
+
+		Collections.sort(list, comp);
+		System.out.println("Top 3 teams in the division: ");
+		System.out.println(list.get(list.size() - 1) + "\n" + list.get(list.size() - 2) + "\n" +list.get(list.size() - 3));
 	}
 }
 
