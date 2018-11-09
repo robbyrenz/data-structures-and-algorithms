@@ -15,6 +15,83 @@ public class Team {
 
 	// constructors
 	public Team() {
+		this.city = "unknown";
+		this.name = "unknown";
+		this.wins = 0;
+		this.losses = 0;
+		this.otl = 0;
+		this.row = 0;
+	}
 
+	public Team(String city, String name, int wins, int losses, int otl, int row) {
+		this.city = "unknown";
+		this.name = "unknown";
+		this.wins = 0;
+		this.losses = 0;
+		this.otl = 0;
+		this.row = 0;
+	}
+
+	// getters
+	public String getCity() {
+		return city;
+	}
+
+	public String getName() {
+		return name;
+	}
+
+	public int getWins() {
+		return wins;
+	}
+
+	public int getLosses() {
+		return losses;
+	}
+
+	public int getOtl() {
+		return otl;
+	}
+
+	public int getRow() {
+		return row;
+	}
+	
+	// setters
+	public void setCity(String s) {
+		city = s;
+	}
+
+	public void setName(String s) {
+		Name = s;
+	}
+
+	public void setWins(int number) {
+		wins = number;
+	}
+
+	public void setLosses(int number) {
+		losses = number;
+	}
+
+	public void setOtl(int number) {
+		otl = number;
+	}
+
+	public void setRow(int number) {
+		row = number;
+	}
+	
+	// other methods
+	public String toString() {
+		return city + "\t" + name + "\t" + wins + "\t" + losses + "\t" + otl + "\t" + row + "\n";
+	}
+
+	public int gamesPlayed() {
+		return wins + losses + otl;
+	}
+
+	public int points() {
+		return wins * 2 + otl;
 	}
 
