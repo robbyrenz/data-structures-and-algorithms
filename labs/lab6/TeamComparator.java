@@ -11,7 +11,7 @@ public class TeamComparator implements Comparator<Team> {
 		if (one.points() != two.points())
 			return one.points() - two.points();
 		else if (one.gamesPlayed() == two.gamesPlayed())
-			return one.getRow() - two.getRow());
+			return one.getRow() - two.getRow();
 		else
 			return one.gamesPlayed() < two.gamesPlayed() ? one.gamesPlayed() : two.gamesPlayed();
 	}

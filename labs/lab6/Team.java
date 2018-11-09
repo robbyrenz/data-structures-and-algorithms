@@ -11,7 +11,7 @@ public class Team {
 	private int wins;
 	private int losses;
 	private int otl; // number of overtime/shootout wins
-	private int row // number of regulation overtime wins
+	private int row; // number of regulation overtime wins
 
 	// constructors
 	public Team() {
@@ -24,12 +24,12 @@ public class Team {
 	}
 
 	public Team(String city, String name, int wins, int losses, int otl, int row) {
-		this.city = "unknown";
-		this.name = "unknown";
-		this.wins = 0;
-		this.losses = 0;
-		this.otl = 0;
-		this.row = 0;
+		this.city = city;
+		this.name = name;
+		this.wins = wins;
+		this.losses = losses;
+		this.otl = otl;
+		this.row = row;
 	}
 
 	// getters
@@ -63,7 +63,7 @@ public class Team {
 	}
 
 	public void setName(String s) {
-		Name = s;
+		name = s;
 	}
 
 	public void setWins(int number) {
@@ -84,7 +84,7 @@ public class Team {
 	
 	// other methods
 	public String toString() {
-		return city + "\t" + name + "\t" + wins + "\t" + losses + "\t" + otl + "\t" + row + "\n";
+		return city + " " + name + "\t\t\t" + wins + "\t" + losses + "\t" + otl + "\t" + row + "\n";
 	}
 
 	public int gamesPlayed() {
@@ -94,4 +94,5 @@ public class Team {
 	public int points() {
 		return wins * 2 + otl;
 	}
+}
 
