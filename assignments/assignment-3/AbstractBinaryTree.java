@@ -4,6 +4,8 @@
  * Answer 1 of Assignment 3
  */
 
+import java.util.ArrayList;
+
 // an abstract base class providing some functionality of the BinaryTree interface
 public abstract class AbstractBinaryTree<E> extends AbstractTree<E> implements BinaryTree<E> {
 
@@ -27,7 +29,7 @@ public abstract class AbstractBinaryTree<E> extends AbstractTree<E> implements B
     }
 
     public Iterable<Position<E>> children(Position<E> p) {
-        List<Position<E>> snapshot = new ArrayList<>(2);
+        ArrayList<Position<E>> snapshot = new ArrayList<>(2);
         if (left(p) != null)
             snapshot.add(left(p));
         if (right(p) != null)
