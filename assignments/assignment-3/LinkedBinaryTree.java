@@ -160,7 +160,7 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
                 if (node == parent.getLeft())
                     parent.setLeft(child);
                 else
-                    parent.setRight(chidl);
+                    parent.setRight(child);
             }
             size--;
             E temp = node.getElement();
@@ -168,6 +168,6 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
             node.setLeft(null);
             node.setRight(null);
             node.setParent(node); // convention for defunct node
-            return node;
+            return temp;
         }
 } //--------------------end of LinkedBinaryTree class--------------------
