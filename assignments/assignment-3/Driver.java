@@ -20,18 +20,16 @@ public class Driver {
         tree.addLeft(cursor, "Stock portfolio.");
         cursor = tree.addRight(cursor, "Diversified portfolio with stocks, bonds and short-term instruments.");
 
-        // displayFamily(tree); // for debugging purposes
-
         // reinitializing the cursor position to point to the root of the tree
         cursor = tree.root();
-        // System.out.println(cursor.getElement());
  
         System.out.println("Please answer each question with a 'y' or a 'n'");
         System.out.println();
-        while (tree.isInternal(cursor)) {
-            askQuestion(tree, cursor);
-        }
+        System.out.println(cursor.getElement());
+        while (tree.isInternal(cursor))
+            cursor = askQuestion(tree, cursor);
 
+        System.out.println();
         System.out.println("********************Program Ended********************");
 
     }
@@ -44,14 +42,15 @@ public class Driver {
     }
 
     // method to evaluate the user's input and act accordingly
-    public static void askQuestion(LinkedBinaryTree<String> lbt, Position<String> p) {
+    public static Position<String> askQuestion(LinkedBinaryTree<String> lbt, Position<String> p) {
         Scanner keyboard = new Scanner(System.in);
-        System.out.println(p.getElement());
+        // System.out.println(p.getElement());
         String input = keyboard.next();
         if (input.equalsIgnoreCase("y"))
             p = lbt.left(p);
         else
             p = lbt.right(p);
         System.out.println(p.getElement());
+        return p; // without returning the Position instance, the program will be stuck in a loop
     }
 }
