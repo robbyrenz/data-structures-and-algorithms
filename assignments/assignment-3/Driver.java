@@ -31,14 +31,11 @@ public class Driver {
 
         System.out.println();
         System.out.println("********************Program Ended********************");
+        
+        // testing if the iterators are working
+        for (LinkedBinaryTree<String> s : tree.positions())
+            System.out.println(s);
 
-    }
-
-    /* Displays root and its 2 children */
-    public static void displayFamily(LinkedBinaryTree lbt){
-        System.out.println("Root: " + lbt.root().getElement());
-        System.out.println("Children of " + lbt.root().getElement() + ": ");
-        System.out.println(lbt.left(lbt.root()).getElement() + " and " + lbt.right(lbt.root()).getElement());     
     }
 
     // method to evaluate the user's input and act accordingly

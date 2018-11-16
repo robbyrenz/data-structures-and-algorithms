@@ -88,11 +88,11 @@ public interface Tree<E> /*extends Iterable<E>*/ {
    * Returns an iterator of the elements stored in the tree.
    * @return iterator of the tree's elements
    */
-  // Iterator<E> iterator();
+  Iterator<E> iterator();
 
   /**
    * Returns an iterable collection of the positions of the tree.
    * @return iterable collection of the tree's positions
    */
-  // Iterable<Position<E>> positions();
+  Iterable<Position<E>> positions();
 }
