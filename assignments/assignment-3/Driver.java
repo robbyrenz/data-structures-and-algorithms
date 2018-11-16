@@ -20,41 +20,21 @@ public class Driver {
         tree.addLeft(cursor, "Stock portfolio.");
         cursor = tree.addRight(cursor, "Diversified portfolio with stocks, bonds and short-term instruments.");
 
-        displayFamily(tree); // for debugging purposes
+        // displayFamily(tree); // for debugging purposes
 
-        Position root = tree.root();
-        System.out.println(root.getElement());
+        // reinitializing the cursor position to point to the root of the tree
+        cursor = tree.root();
+        // System.out.println(cursor.getElement());
+ 
+        System.out.println("Please answer each question with a 'y' or a 'n'");
+        System.out.println();
+        while (tree.isInternal(cursor)) {
+            askQuestion(tree, cursor);
+        }
+
+        System.out.println("********************Program Ended********************");
 
     }
-
-    // public static void example() {
-    //     LinkedBinaryTree<String> tree = new LinkedBinaryTree<>();
-
-    //     Position root = tree.addRoot("JLB");
-    //     Position pos = tree.addLeft(root, "Chad");
-    //     tree.addRight(root, "Justin");
-        
-    //     displayFamily(tree); 
-        
-    //     //replace Chad
-    //     tree.set(pos, "Kennedy");
-    //     System.out.println("\nAfter Kennedy replaces Chad: ");
-    //     displayFamily(tree);
-        
-    //     //add Brandt
-    //     pos = tree.addLeft(pos, "Brandt");
-    //     System.out.println("\n" + pos + "'s parent is " + tree.parent(pos));
-        
-    //     //remove Kennedy
-    //     pos = tree.parent(pos);
-    //     tree.remove(pos);
-        
-    //     System.out.println("\nAfter removing Kennedy: ");
-    //     displayFamily(tree);
-
-    //     System.out.println(tree);
-
-    // }
 
     /* Displays root and its 2 children */
     public static void displayFamily(LinkedBinaryTree lbt){
@@ -64,10 +44,14 @@ public class Driver {
     }
 
     // method to evaluate the user's input and act accordingly
-    public static void input(LinkedBinaryTree lbt) {
+    public static void askQuestion(LinkedBinaryTree<String> lbt, Position<String> p) {
         Scanner keyboard = new Scanner(System.in);
+        System.out.println(p.getElement());
         String input = keyboard.next();
-        // if (input.equalsIgnoreCase("y"))
-        //     lbt.
+        if (input.equalsIgnoreCase("y"))
+            p = lbt.left(p);
+        else
+            p = lbt.right(p);
+        System.out.println(p.getElement());
     }
 }
