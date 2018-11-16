@@ -17,3 +17,6 @@ assignments/assignment-1/Shares/.idea/
 *.class
 *.ctxt
 
+# ignoring whatever the below file is
+*.java.swp
+
