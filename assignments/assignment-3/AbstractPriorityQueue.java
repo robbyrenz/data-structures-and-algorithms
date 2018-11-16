@@ -4,6 +4,8 @@
  * Answer of Part 2 of Assignment 3
  */
 
+import java.util.Comparator;
+
 // an abstract base class to assist implementations of the PriorityQueue interface
 public abstract class AbstractPriorityQueue<K,V> implements PriorityQueue<K,V> {
 
@@ -66,6 +68,6 @@ public abstract class AbstractPriorityQueue<K,V> implements PriorityQueue<K,V> {
 
 	// tests whether the priority queue is empty
 	public boolean isEmpty() {
-		return size == 0;
+		return size() == 0;
 	}
 }
