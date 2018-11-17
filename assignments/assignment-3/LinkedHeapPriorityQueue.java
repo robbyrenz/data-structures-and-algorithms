@@ -59,4 +59,3 @@ public class LinkedHeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
 	return newest;
     }
 }
-
