@@ -49,6 +49,11 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
         public void setRight(Node<E> rightChild) {
             right = rightChild;
         }
+ 
+        // toString method
+        public String toString() {
+            return this.getElement();
+        }
     } //--------------------end of nested Node class--------------------
 
         // factory function to create a new node storing element e
@@ -169,5 +174,10 @@ public class LinkedBinaryTree<E> extends AbstractBinaryTree<E> {
             node.setRight(null);
             node.setParent(node); // convention for defunct node
             return temp;
+        }
+
+        // toString method
+        public String toString() {
+            return node.getElement();
         }
 } //--------------------end of LinkedBinaryTree class--------------------
