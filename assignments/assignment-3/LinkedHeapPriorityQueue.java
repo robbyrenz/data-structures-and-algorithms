@@ -4,6 +4,8 @@
  * Answer of Part B of Assignment 3
  */
 
+import java.util.Comparator;
+
 // an implementation of a priority queue using a linked binary tree heap
 public class LinkedHeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
 
@@ -22,7 +24,7 @@ public class LinkedHeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
 
     // exchanges the entries at positions i and j of the linked binary tree, positions will not be swapped
     protected void swap(Position<Entry<K,V>> a, Position<Entry<K,V>> b) {
-        PQEntry<K,V> tempOne = a.getElement();
+        Entry<K,V> tempOne = a.getElement();
 	a = b;
 	b = tempOne;
 
@@ -43,14 +45,15 @@ public class LinkedHeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
 	checkKey(key); // auxiliary key-checking method (could throw exception)
 	Entry<K,V> newest = new PQEntry<>(key, value);
 	// code to add to the end of the list
-	Position cursor = root();
-	String binary = Integer.toBinaryString(key);
-	char[] binaryArr = Character.toCharArray(binary);
+	Position cursor = heap.root();
+	// int keyTwo = (int) key;
+	String binary = Integer.toBinaryString(heap.size());
+	char[] binaryArr = binary.toCharArray();
 	for (int i = 1; i < binaryArr.length - 1; i++) {
-		if (binaryArr[i] == '1';)
-			cursor = right(cursor);
+		if (binaryArr[i] == '1')
+			cursor = heap.right(cursor);
 		else
-			cursor = left(cursor);
+			cursor = heap.left(cursor);
 	}
 	// code to upheap the newly added entry
 	return newest;

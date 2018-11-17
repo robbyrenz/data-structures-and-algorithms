@@ -33,7 +33,7 @@ public class Driver {
         System.out.println("********************Program Ended********************");
         
         // testing if the iterators are working
-        for (LinkedBinaryTree<String> s : tree.positions())
+        for (Position s : tree.positions())
             System.out.println(s);
 
     }
