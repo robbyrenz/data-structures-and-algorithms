@@ -23,12 +23,16 @@ public class Driver {
         // reinitializing the cursor position to point to the root of the tree
         cursor = tree.root();
  
+        // intro to the program
         System.out.println("Please answer each question with a 'y' or a 'n'");
         System.out.println();
+
+        // block of code to ask the questions
         System.out.println(cursor.getElement());
         while (tree.isInternal(cursor))
             cursor = askQuestion(tree, cursor);
 
+        // ending the program
         System.out.println();
         System.out.println("********************Program Ended********************");
         
