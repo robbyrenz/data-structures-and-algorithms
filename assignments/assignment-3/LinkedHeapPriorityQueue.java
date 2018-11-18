@@ -31,12 +31,12 @@ public class LinkedHeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
     }
 
     // moves the entry at position j higher, if necessary, to restore the heap property
-    protected void upheap(Position<Entry<K,V>> p) {
+    protected void upheap(Entry<K,V> p) {
         // code here
     }
 
     // moves the entry at a position lower, if necessary, to restore the heap property
-    protected void downheap(Position<Entry<K,V>> p) {
+    protected void downheap(Entry<K,V> p) {
         // code here
     }
 
@@ -63,12 +63,18 @@ public class LinkedHeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
 	String binary = Integer.toBinaryString(heap.size());
 	char[] binaryArr = binary.toCharArray();
 	for (int i = 1; i < binaryArr.length - 1; i++) {
-		if (binaryArr[i] == '1')
+        if (binaryArr.length - 1 == i) {
+            if (binaryArr[i] == '0')
+                newest = heap.addLeft(cursor, newest);
+            else
+                newest = heap.addRight(cursor, newest);
+        }
+		else if (binaryArr[i] == '1')
 			cursor = heap.right(cursor);
 		else
 			cursor = heap.left(cursor);
-	}
-	// code to upheap the newly added entry
+    }
+    upheap(newest);
 	return newest;
     }
 
@@ -76,14 +82,14 @@ public class LinkedHeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
     public Entry<K,V> removeMin() {
         if (heap.isEmpty())
             return null;
-        Entry<K,V> answer = this.root();
+        Entry<K,V> answer = this.min();
         // code here
         return answer;
     }
 
     // returns the last entry in the priority queue
     public Entry<K,V> returnsLast() {
-        Entry<K,V> last;
+        Entry<K,V> last = (Entry) heap.root();
         for (Entry e : heap)
             last = e;
         return last;
