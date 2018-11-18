@@ -22,6 +22,7 @@ public class LinkedHeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
 	    super(comp);
     }
 
+    // protected utilities
     // exchanges the entries at positions i and j of the linked binary tree, positions will not be swapped
     protected void swap(Position<Entry<K,V>> a, Position<Entry<K,V>> b) {
         Position<Entry<K,V>> tempOne = a;
@@ -30,9 +31,27 @@ public class LinkedHeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
     }
 
     // moves the entry at position j higher, if necessary, to restore the heap property
-    // protected void upheap(Position<Entry<K,V>> a) {
-    //     while 
-    // }
+    protected void upheap(Position<Entry<K,V>> p) {
+        // code here
+    }
+
+    // moves the entry at a position lower, if necessary, to restore the heap property
+    protected void downheap(Position<Entry<K,V>> p) {
+        // code here
+    }
+
+    // public methods
+    // returns the number of entries in the priority queue
+    public int size() {
+        return heap.size();
+    }
+
+    // returns, but does not remove, an entry with minimal key
+    public Entry<K,V> min() {
+        if (heap.isEmpty())
+            return null;
+        return heap.root();
+    }
 
     // inserts a key-value pair and returns the entry created
     public Entry<K,V> insert(K key, V value) throws IllegalArgumentException {
@@ -51,5 +70,22 @@ public class LinkedHeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
 	}
 	// code to upheap the newly added entry
 	return newest;
+    }
+
+    // removes and returns an entry with minimal key, if any
+    public Entry<K,V> removeMin() {
+        if (heap.isEmpty())
+            return null;
+        Entry<K,V> answer = this.root();
+        // code here
+        return answer;
+    }
+
+    // returns the last entry in the priority queue
+    public Entry<K,V> returnsLast() {
+        Entry<K,V> last;
+        for (Entry e : heap)
+            last = e;
+        return last;
     }
 }
