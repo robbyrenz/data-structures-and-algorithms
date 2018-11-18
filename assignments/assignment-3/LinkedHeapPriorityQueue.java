@@ -24,15 +24,9 @@ public class LinkedHeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
 
     // exchanges the entries at positions i and j of the linked binary tree, positions will not be swapped
     protected void swap(Position<Entry<K,V>> a, Position<Entry<K,V>> b) {
-        Entry<K,V> tempOne = a.getElement();
-	a = b;
-	b = tempOne;
-
-	// long version:
-        // a.getElement().setKey(b.getElement().getKey());
-        // a.getElement().setValue(b.getElement().getValue());
-        // b.getElement().setKey(tempOne.getKey());
-        // b.getElement().setValue(tempOne.getValue());
+        Position<Entry<K,V>> tempOne = a;
+        a = b;
+        b = tempOne;
     }
 
     // moves the entry at position j higher, if necessary, to restore the heap property
