@@ -50,32 +50,31 @@ public class LinkedHeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
     public Entry<K,V> min() {
         if (heap.isEmpty())
             return null;
-        return heap.root();
+        return (Entry) heap.root();
     }
 
     // inserts a key-value pair and returns the entry created
     public Entry<K,V> insert(K key, V value) throws IllegalArgumentException {
-	checkKey(key); // auxiliary key-checking method (could throw exception)
-	Entry<K,V> newest = new PQEntry<>(key, value);
-	// code to add to the end of the list
-	Position cursor = heap.root();
-	// int keyTwo = (int) key;
-	String binary = Integer.toBinaryString(heap.size());
-	char[] binaryArr = binary.toCharArray();
-	for (int i = 1; i < binaryArr.length - 1; i++) {
-        if (binaryArr.length - 1 == i) {
-            if (binaryArr[i] == '0')
-                newest = heap.addLeft(cursor, newest);
+        checkKey(key); // auxiliary key-checking method (could throw exception)
+        Entry<K,V> newest = new PQEntry<>(key, value);
+        // code to add to the end of the list
+        Position cursor = heap.root();
+        String binary = Integer.toBinaryString(heap.size());
+        char[] binaryArr = binary.toCharArray();
+        for (int i = 1; i < binaryArr.length - 1; i++) {
+            if (binaryArr.length - 1 == i) {
+                if (binaryArr[i] == '0')
+                    cursor = heap.addLeft(cursor, newest);
+                else
+                    cursor = heap.addRight(cursor, newest);
+            }
+            else if (binaryArr[i] == '1')
+                cursor = heap.right(cursor);
             else
-                newest = heap.addRight(cursor, newest);
+                cursor = heap.left(cursor);
         }
-		else if (binaryArr[i] == '1')
-			cursor = heap.right(cursor);
-		else
-			cursor = heap.left(cursor);
-    }
-    upheap(newest);
-	return newest;
+        upheap(newest);
+        return newest;
     }
 
     // removes and returns an entry with minimal key, if any
@@ -83,14 +82,16 @@ public class LinkedHeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
         if (heap.isEmpty())
             return null;
         Entry<K,V> answer = this.min();
-        // code here
+        swap(heap.root(), returnsLast());
+        heap.remove(returnsLast());
+        downheap((Entry) heap.root());
         return answer;
     }
 
     // returns the last entry in the priority queue
-    public Entry<K,V> returnsLast() {
-        Entry<K,V> last = (Entry) heap.root();
-        for (Entry e : heap)
+    public Position<Entry<K,V>> returnsLast() {
+        Position<Entry<K,V>> last = heap.root();
+        for (Position e : heap.positions())
             last = e;
         return last;
     }
