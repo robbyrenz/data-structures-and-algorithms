@@ -37,9 +37,8 @@ public class Driver {
         System.out.println("********************Program Ended********************");
         
         // testing if the iterators are working
-        for (Position s : tree.positions())
-            System.out.println(s);
-        // iterators are working!
+        // for (Position s : tree.positions())
+        //     System.out.println(s);
 
     }
 

@@ -5,6 +5,10 @@
  */
 
 import java.util.Comparator;
+import java.util.List;
+import java.util.Iterator;
+import java.util.ArrayList;
+import java.util.concurrent.LinkedTransferQueue;
 
 // an implementation of a priority queue using a linked binary tree heap
 public class LinkedHeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
@@ -31,12 +35,15 @@ public class LinkedHeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
     }
 
     // moves the entry at position j higher, if necessary, to restore the heap property
-    protected void upheap(Entry<K,V> p) {
-        // code here
+    protected void upheap(Position<Entry<K,V>> p) {
+        while (compare(p.getElement(), (Entry) heap.parent(p)) >= 0) {
+            swap(p, heap.parent(p));
+            p = heap.parent(p);
+        }
     }
 
     // moves the entry at a position lower, if necessary, to restore the heap property
-    protected void downheap(Entry<K,V> p) {
+    protected void downheap(Position<Entry<K,V>> p) {
         // code here
     }
 
@@ -73,7 +80,7 @@ public class LinkedHeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
             else
                 cursor = heap.left(cursor);
         }
-        upheap(newest);
+        upheap(cursor);
         return newest;
     }
 
@@ -84,7 +91,7 @@ public class LinkedHeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
         Entry<K,V> answer = this.min();
         swap(heap.root(), returnsLast());
         heap.remove(returnsLast());
-        downheap((Entry) heap.root());
+        downheap(heap.root());
         return answer;
     }
 
@@ -94,5 +101,45 @@ public class LinkedHeapPriorityQueue<K,V> extends AbstractPriorityQueue<K,V> {
         for (Position e : heap.positions())
             last = e;
         return last;
+    }
+
+    // --------------------nested ElementIterator Class--------------------
+    // this class adapts the iteration produced by positions() to return elements
+    private class ElementIterator implements Iterator<K> {
+        Iterator<Position<K>> posIterator = positions().iterator();
+        public boolean hasNext() {
+            return posIterator.hasNext();
+        }
+        public K next() {
+            return posIterator.next().getElement(); // return element!
+        }
+        public void remove() {
+            posIterator.remove();
+        }
+    }
+
+    // returns an iterator of the elements stored in the tree
+    public Iterator<K> iterator() {
+        return new ElementIterator();
+    }
+
+    public Iterable<Position<K>> positions() {
+        return breadthfirst();
+    }
+
+    // returns an iterable collection of positions of the tree in breadth-first order
+    public Iterable<Position<K>> breadthfirst() {
+        List<Position<K>> snapshot = new ArrayList<>();
+        if (!isEmpty()) {
+            LinkedTransferQueue<Position<K>> fringe = new LinkedTransferQueue<>();
+            fringe.add((Position) heap.root());
+            while (!fringe.isEmpty()) {
+                Position<Entry<K,V>> p = fringe.poll(); // remove from front of the queue
+                snapshot.add((Position) p);
+                for (Position<K> c : heap.children(p))
+                    fringe.add(c); // add children back to queue
+            }
+        }
+        return snapshot;
     }
 }
