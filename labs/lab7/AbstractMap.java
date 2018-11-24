@@ -4,6 +4,8 @@
  * Answer 1 of Lab 7
  */
 
+import java.util.Iterator;
+
 public abstract class AbstractMap<K,V> implements Map<K,V> {
 	public boolean isEmpty() {
 		return size() == 0;
@@ -77,4 +79,5 @@ public abstract class AbstractMap<K,V> implements Map<K,V> {
 	public Iterable<V> values() {
 		return new ValueIterable();
 	}
+}
 
