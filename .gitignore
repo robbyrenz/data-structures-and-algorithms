@@ -20,3 +20,6 @@ assignments/assignment-1/Shares/.idea/
 # ignoring whatever the below file is
 *.java.swp
 
+# and this
+*~
+
