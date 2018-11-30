@@ -11,16 +11,15 @@ import java.io.FileNotFoundException;
 public class Driver {
 	public static void main(String[] args) throws FileNotFoundException {
 		Map<String, Integer> map = new ProbeHashMap<>();
-		String[] foo = {};
-		Scanner keyboard = new Scanner(new File("PartA.txt"));
+		Scanner keyboard = new Scanner(new File("PartA.txt")).useDelimiter("[^a-zA-Z']+");
 
-		int i = 0;
 		while (keyboard.hasNext()) {
-			foo[i] = keyboard.next();
-			i++;
+			String word = keyboard.next();
+			if (map.get(word) == null)
+				map.put(word, 1);
+			else
+				map.put(word, map.get(word) + 1);
 		}
-
-		System.out.println(foo[2]);
 	}
 }
 
