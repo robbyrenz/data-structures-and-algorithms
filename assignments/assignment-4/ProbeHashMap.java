@@ -4,6 +4,8 @@
  * Answer of Part A for Assignment 4
  */
 
+import java.util.ArrayList;
+
 public class ProbeHashMap<K,V> extends AbstractHashMap<K,V> {
 	private MapEntry<K,V>[] table; // a fixed array of entries (all initially null)
 	private MapEntry<K,V> DEFUNCT = new MapEntry<>(null, null); // sentinel

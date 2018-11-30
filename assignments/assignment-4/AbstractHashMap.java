@@ -4,6 +4,9 @@
  * Answer of Part A of Assignment 4
  */
 
+import java.util.Random;
+import java.util.ArrayList;
+
 public abstract class AbstractHashMap<K,V> extends AbstractMap<K,V> {
 	protected int n = 0; // number of entries in the dictionary
 	protected int capacity; // length of the table
