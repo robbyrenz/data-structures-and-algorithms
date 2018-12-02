@@ -36,7 +36,7 @@ public abstract class AbstractMap<K,V> implements Map<K,V> {
 		}
     
 		public String toString() {
-			return "" +  v;
+			return k + " " + v;
 		}
 	} //--------------------end of nested MapEntry class--------------------
 

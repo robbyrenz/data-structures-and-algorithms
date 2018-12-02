@@ -4,13 +4,14 @@
  * Answer of Part A of Assignment 4
  */
 
+import java.util.Map;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 
 public class Driver {
 	public static void main(String[] args) throws FileNotFoundException {
-		Map<String,Integer> map = new ProbeHashMap<>();
+		ProbeHashMap<String,Integer> map = new ProbeHashMap<>();
 		Scanner keyboard = new Scanner(new File("PartA.txt")).useDelimiter("[^a-zA-Z']+");
 
 		while (keyboard.hasNext()) {
@@ -21,17 +22,20 @@ public class Driver {
 				map.put(word, map.get(word) + 1);
 		}
 
-		Entry<String,Integer> arr[] = new Entry[map.size()];
+		for (Entry<String,Integer> foo : map.entrySet())
+			System.out.println(foo);
 
-		int i = 0;
-		for (Entry<String,Integer> foo : map.entrySet()) {
-			arr[i] = foo;
-			i++;
-		}
+		// Entry<String,Integer> arr[] = new Entry[map.size()];
 
-		MergeSort.mergeSort(arr, new EntryComparator());
-		for (int j = 0; i < 10; i++)
-			System.out.println(arr[i]);
+		// int i = 0;
+		// for (Entry<String,Integer> foo : map.entrySet()) {
+		// 	arr[i] = foo;
+		// 	i++;
+		// }
+
+		// MergeSort.mergeSort(arr, new EntryComparator());
+		// for (int j = 0; i < 10; i++)
+		// 	System.out.println(arr[i]);
 	}
 }
 
