@@ -14,7 +14,7 @@ public class Order {
     public Order() {
         orderID = "unknown";
         customerID = "unknown";
-        amount = 0.0;
+        amount = 0.00;
     }
 
     public Order(String orderId, String customerID, double amount) {

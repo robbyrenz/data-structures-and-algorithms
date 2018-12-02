@@ -34,6 +34,10 @@ public abstract class AbstractMap<K,V> implements Map<K,V> {
 			v = value;
 			return old;
 		}
+    
+		public String toString() {
+			return "" +  v;
+		}
 	} //--------------------end of nested MapEntry class--------------------
 
 	// support for public keySet method...
