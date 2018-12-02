@@ -33,6 +33,6 @@ public class PartB {
         // printing out the number of collisions that occurred in the hashmap
         System.out.println();
         System.out.println("Number of Collisions that occured in the Hashmap: ");
-        System.out.println(); // insert in here a method
+        System.out.println(map.numCollisions()); // insert in here a method
     }
 }

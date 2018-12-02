@@ -9,6 +9,10 @@ import java.util.ArrayList;
 public class ALChainHashMap<K,V> extends AbstractHashMap<K,V> {
     // a fixed capacity array of UnsortedTableMap that serves as buckets
     private UnsortedTableMap<K,V>[] table; // initialized within createTable
+
+    // private field that keeps track of the number of collisions that occurred in the hash map
+    private int collisions;
+
     public ALChainHashMap() {
         super();
     }
@@ -57,5 +61,10 @@ public class ALChainHashMap<K,V> extends AbstractHashMap<K,V> {
             for (Entry<K,V> entry: table[h].entrySet())
                 buffer.add(entry);
         return buffer;
+    }
+
+    // returns the number of collisions that occurred in the hash map
+    public int numCollisions() {
+        return collisions;
     }
 }
