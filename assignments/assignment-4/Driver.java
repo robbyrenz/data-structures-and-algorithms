@@ -22,20 +22,16 @@ public class Driver {
 				map.put(word, map.get(word) + 1);
 		}
 
-		for (Entry<String,Integer> foo : map.entrySet())
-			System.out.println(foo);
+		Entry<String,Integer> arr[] = new Entry[map.size()];
 
-		// Entry<String,Integer> arr[] = new Entry[map.size()];
+		int i = 0;
+		for (Entry<String,Integer> foo : map.entrySet()) {
+			arr[i] = foo;
+			i++;
+		}
 
-		// int i = 0;
-		// for (Entry<String,Integer> foo : map.entrySet()) {
-		// 	arr[i] = foo;
-		// 	i++;
-		// }
-
-		// MergeSort.mergeSort(arr, new EntryComparator());
-		// for (int j = 0; i < 10; i++)
-		// 	System.out.println(arr[i]);
+		MergeSort.mergeSort(arr, new EntryComparator());
+		for (int j = 0; i < 10; i++)
+			System.out.println(arr[i]);
 	}
 }
-

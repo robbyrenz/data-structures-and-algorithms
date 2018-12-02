@@ -11,7 +11,7 @@ public class ALChainHashMap<K,V> extends AbstractHashMap<K,V> {
     private UnsortedTableMap<K,V>[] table; // initialized within createTable
 
     // private field that keeps track of the number of collisions that occurred in the hash map
-    private int collisions;
+    private int collisions = 0;
 
     public ALChainHashMap() {
         super();
@@ -28,29 +28,27 @@ public class ALChainHashMap<K,V> extends AbstractHashMap<K,V> {
     }
     // returns value associated with key k in bucket with hash value h, or else null
     protected V bucketGet(int h, K k) {
-        UnsortedTableMap<K,V> bucket = table[h];
+        ArrayList<MapEntry<K,V>> bucket = table[h];
         if (bucket == null)
             return null;
-        return bucket.get(k);
+        return bucket.get(h);
     }
     // associates key k with value v in bucket with hash value h; returns old value
     protected V bucketPut(int h, K k, V v) {
-        UnsortedTableMap<K,V> bucket = table[h];
+        ArrayList<MapEntry<K,V>> bucket = (ArrayList) table[h];
+        MapEntry<K,V> foo = new MapEntry(k, v);
         if (bucket == null)
-            bucket = table[h] = new UnsortedTableMap<>();
-        int oldSize = bucket.size();
-        V answer = bucket.put(k,v);
-        n += (bucket.size() - oldSize); // size may have increased
-        return answer;
+            bucket = table[h] = new ArrayList<>();
+        V answer = bucket.add(h, foo);
+        if (bucket.contains(foo))
+            collisions++;
     }
     // removes entry having key k from bucket with hash value h (if any)
     protected V bucketRemove(int h, K k) {
-        UnsortedTableMap<K,V> bucket = table[h];
+        ArrayList<MapEntry<K,V>> bucket = table[h];
         if (bucket == null)
             return null;
-        int oldSize = bucket.size();
         V answer = bucket.remove(k);
-        n -= (oldSize - bucket.size()); // size may have decreased
         return answer;
     }
     // returns an iterable collection of all key-value entries of the map
