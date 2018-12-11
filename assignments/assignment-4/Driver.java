@@ -4,13 +4,14 @@
  * Answer of Part A of Assignment 4
  */
 
+import java.util.Map;
 import java.util.Scanner;
 import java.io.File;
 import java.io.FileNotFoundException;
 
 public class Driver {
 	public static void main(String[] args) throws FileNotFoundException {
-		Map<String,Integer> map = new ProbeHashMap<>();
+		ProbeHashMap<String,Integer> map = new ProbeHashMap<>();
 		Scanner keyboard = new Scanner(new File("PartA.txt")).useDelimiter("[^a-zA-Z']+");
 
 		while (keyboard.hasNext()) {
@@ -34,4 +35,3 @@ public class Driver {
 			System.out.println(arr[i]);
 	}
 }
-

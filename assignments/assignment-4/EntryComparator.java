@@ -7,7 +7,7 @@
 import java.util.Comparator;
 
 public class EntryComparator implements Comparator<Entry<String, Integer>> {
-    public int compare(Entry<String, Integer> a, Entry<String, Integer> b) {
+    public int compare(Entry<String,Integer> a, Entry<String,Integer> b) {
         return b.getValue().compareTo(a.getValue());
     }
 }
